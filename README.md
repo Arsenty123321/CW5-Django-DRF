@@ -1,1 +1,1 @@
-# CW8-Django-DRF
+# CW-Django-DRF

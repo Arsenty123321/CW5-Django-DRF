@@ -6,3 +6,10 @@ class IsStaff(permissions.BasePermission):
 
     def has_permission(self, request, view):
         return request.user.is_staff
+
+
+class IsOwner(permissions.BasePermission):
+    """Проверка на создателя привычки."""
+
+    def has_object_permission(self, request, view, obj):
+        return obj.owner == request.user

@@ -14,7 +14,7 @@ class HabitListAPIView(generics.ListAPIView):
     pagination_class = HabitsPagination
 
     def get_queryset(self):
-        return Habit.objects.filter(owner=self.request.user)
+        return Habit.objects.filter(owner=self.request.user).order_by('id')
 
 
 class HabitRetrieveAPIView(generics.RetrieveAPIView):
@@ -68,4 +68,4 @@ class HabitPublicListAPIView(generics.ListAPIView):
     pagination_class = HabitsPagination
 
     def get_queryset(self):
-        return Habit.objects.filter(is_public=True)
+        return Habit.objects.filter(is_public=True).order_by('id')

@@ -49,3 +49,11 @@ poetry run ./manage.py csu
 # Запуск сервера
 poetry run ./manage.py runserver
 ```
+
+### Запуск тестов
+```
+# Запуск тестов со сбором покрытия
+poetry run coverage run --source='.' manage.py test
+# Генерация отчета покрытия тестами
+poetry run coverage report
+```

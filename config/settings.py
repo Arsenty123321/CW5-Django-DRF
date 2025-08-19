@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "corsheaders",
     "drf_yasg",
+    'django_celery_beat',
     'users',
     'habit_tracker',
 ]
@@ -152,3 +153,22 @@ SWAGGER_SETTINGS = {
 CORS_ALLOWED_ORIGINS = ["http://127.0.0.1:8000", "http://localhost:8000"]
 CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:8000", "http://localhost:8000"]
 CORS_ALLOW_ALL_ORIGINS = False
+
+
+TG_URL = os.getenv("TG_URL")
+TG_BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
+
+CELERY_TIMEZONE = TIME_ZONE
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
+CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND')
+
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
+
+CELERY_BEAT_SCHEDULE = {
+    "block_inactive_users": {
+        "task": "habit_tracker.tasks.habits_reminder",
+        "schedule": timedelta(minutes=1),  # run at every minutes
+    },
+}

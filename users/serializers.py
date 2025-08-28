@@ -11,4 +11,4 @@ class UserSerializer(serializers.ModelSerializer):
 class UserSerializerNoPass(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('email', 'tg_chat_id')
+        fields = ('id', 'email', 'tg_chat_id')

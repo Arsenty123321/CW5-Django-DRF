@@ -1,0 +1,8 @@
+**
+!config
+!habit_tracker
+!users
+!manage.py
+!init.sh
+!pyproject.toml
+!poetry.lock
